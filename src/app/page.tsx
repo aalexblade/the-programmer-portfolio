@@ -3,6 +3,8 @@ import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Projects } from "@/components/sections/Projects";
 import { Experience } from "@/components/sections/Experience";
+import { Contact } from "@/components/sections/Contact";
+import { Footer } from "@/components/sections/Footer";
 
 export default function Home() {
   return (
@@ -13,12 +15,9 @@ export default function Home() {
         <About />
         <Projects />
         <Experience />
-        
-        {/* Placeholder sections for scroll testing */}
-        <section id="contact" className="h-screen w-full flex items-center justify-center">
-          <h2 className="font-dm text-3xl text-white">Contact Section</h2>
-        </section>
+        <Contact />
       </main>
+      <Footer />
     </>
   );
 }
