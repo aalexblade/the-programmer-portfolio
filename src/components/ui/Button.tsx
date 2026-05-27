@@ -1,20 +1,23 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 
 /**
  * Props for the Button component.
- * Extends standard HTML button attributes to ensure high reusability.
+ * Supports both standard HTML button attributes and Next.js Link props.
  */
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * The visual style variant of the button.
-   * - 'primary': Standard filled button using the brand primary color.
-   * - 'secondary': Outline/ghost variant emphasizing the technical font-dm aesthetic.
    */
   variant?: "primary" | "secondary";
   /**
-   * Optional custom classes to append to the button.
+   * If provided, the button will render as a Next.js Link.
+   */
+  href?: string;
+  /**
+   * Optional custom classes to append.
    */
   className?: string;
   /**
@@ -24,14 +27,12 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 /**
- * A highly reusable, accessible Button component styled with Tailwind v4 tokens.
- * 
- * @example
- * <Button variant="primary">Click Me</Button>
- * <Button variant="secondary" onClick={handleResume}>Download Resume</Button>
+ * A highly reusable Button component that dynamically renders as 
+ * either a <button> or a Next.js <Link>.
  */
 export const Button = ({
   variant = "primary",
+  href,
   className = "",
   children,
   ...props
@@ -46,6 +47,14 @@ export const Button = ({
   };
 
   const combinedClasses = `${baseStyles} ${variants[variant]} ${className}`;
+
+  if (href) {
+    return (
+      <Link href={href} className={combinedClasses}>
+        {children}
+      </Link>
+    );
+  }
 
   return (
     <button className={combinedClasses} {...props}>
