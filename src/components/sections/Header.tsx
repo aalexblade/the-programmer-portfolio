@@ -2,7 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { NavLink } from "@/components/ui/NavLink";
 import { ResumeButton } from "@/components/ui/ResumeButton";
 import { MobileMenu } from "@/components/ui/MobileMenu";
-import { NAV_LINKS } from "@/constants/navigation";
+import { NAVIGATION_LINKS } from "@/constants/navigation";
 
 /**
  * Header Section Component
@@ -29,7 +29,7 @@ export const Header = () => {
           {/* Semantic Navigation Container (Desktop) */}
           <nav className="hidden md:block" aria-label="Main navigation">
             <ul className="flex items-center space-x-8">
-              {NAV_LINKS.map((link) => (
+              {NAVIGATION_LINKS.map((link) => (
                 <li key={link.href}>
                   <NavLink 
                     href={link.href} 
