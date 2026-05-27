@@ -1,35 +1,30 @@
-# Developer Agent Instructions & Project Context
+# Developer Agent Instructions & Project Context (Section-Based Architecture)
 
-You are an expert AI pair-programmer and software architect. Your mission is to help build **"TheProgrammer" — a 1-page Developer Portfolio Landing Page**. You must strictly adhere to the technical stack, architectural guidelines, and rules defined below.
-
----
-
-## 🛠️ Technical Stack & Framework Constraints
-
-- **Framework:** Next.js 15+ (App Router, Static Site Generation / SSG).
-- **Language:** TypeScript (Strict mode enabled, no explicit `any` types allowed).
-- **Styling:** Tailwind CSS v4.
-  - *CRITICAL:* Do NOT look for or create a `tailwind.config.ts` file. 
-  - All theme extensions (colors, fonts) are handled via CSS variables using the `@theme` directive directly inside `src/styles/globals.css`.
-- **Design System:** Atomic Design principles (Components split into `atoms`, `molecules`, and `organisms`).
-- **Icons:** Google Icons or Lucide React.
-- **Typography:**
-  - `font-dm` (mapped to `var(--font-dm-mono)`) for code accents, badges, and technical headings.
-  - `font-ibm` (mapped to `var(--font-ibm-mono)`) for primary layout typography and body text.
+You are an expert AI pair-programmer practicing pragmatic, high-performance web development. Your mission is to help build **"TheProgrammer" — a fast, responsive 1-page Developer Portfolio Landing Page**.
 
 ---
 
-## 🌳 Directory & Architecture Rules
+## 🛠️ Technical Stack & Tailwind v4 Rules
 
-Maintain a clean, modular structure. Ensure code is highly scannable and isolated:
+- **Framework:** Next.js 15+ (App Router, static generation enabled).
+- **Core Principle:** React Server Components (RSC) by default. All landing sections are Server Components. Interactive state and animations must be isolated inside lowest-level client components.
+- **Styling:** Tailwind CSS v4 (configured via `@theme` in `src/styles/globals.css`, NO `tailwind.config.ts` allowed).
+- **Typography Tokens:**
+  - `font-dm` / `font-ibm`: Mono fonts used strictly for headings, buttons, technical labels, and code tokens.
+  - `font-sans`: Highly readable typography layer used for paragraphs, experience descriptions, and project copy.
+
+---
+
+## 🌳 Pragmatic Project Structure (Section-Based UI)
+
+Do NOT use Atomic Design. Keep structure flat to prevent context exhaustion:
 
 ```text
 src/
-├── app/                  # Next.js App Router (Layouts & main structural entry points)
+├── app/                  # Next.js structural files and root routing
 ├── components/
-│   ├── atoms/            # Pure, lowest-level visual components (Buttons, Tags, Typography wrappers)
-│   ├── molecules/        # Simple combinations of atoms (NavLinks, ProjectCard items, SocialLinks)
-│   └── organisms/        # Independent, large-scale layout sections (Header, Hero, Projects grid)
-├── constants/            # Static data configurations (Project arrays, timeline lists) to decouple content from layout
-├── styles/               # Global CSS entry points (globals.css containing Tailwind v4 @theme configuration)
-└── types/                # Global TypeScript type definitions and shared interfaces
+│   ├── ui/               # Reusable atomic UI elements (Button.tsx, Badge.tsx)
+│   └── sections/         # Big page sections mapped from Figma blocks (Header, Hero, Projects, Experience, Footer)
+├── constants/            # Isolated data structures to map lists dynamically
+├── styles/               # Global CSS configurations (globals.css with Tailwind v4 theme)
+└── types/                # Strict TypeScript global declarations

@@ -1,5 +1,6 @@
+// src/app/layout.tsx
 import type { Metadata } from "next";
-import { DM_Mono, IBM_Plex_Mono } from "next/font/google";
+import { DM_Mono, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "../styles/globals.css";
 
 const dmMono = DM_Mono({
@@ -14,16 +15,16 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-mono",
 });
 
+// Added for long text readability while keeping the IBM design language consistency
+const ibmPlexSans = IBM_Plex_Sans({
+  weight: ["400", "500", "600"],
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-ibm-sans",
+});
+
 export const metadata: Metadata = {
   title: "TheProgrammer | Developer Portfolio",
-  description: "Professional portfolio landing page for Software Engineer",
-  keywords: [
-    "Front-end Developer",
-    "Software Engineer",
-    "Portfolio",
-    "React",
-    "Next.js",
-  ],
+  description: "Professional 1-page portfolio landing page for Software Engineer",
 };
 
 export default function RootLayout({
@@ -32,8 +33,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="uk" className={`${dmMono.variable} ${ibmPlexMono.variable}`}>
-      <body className="bg-[#0D0E11] text-[#E4E6EB] font-ibm antialiased selection:bg-[#3B82F6] selection:text-white">
+    <html 
+      lang="uk" 
+      className={`${dmMono.variable} ${ibmPlexMono.variable} ${ibmPlexSans.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="bg-dark-bg text-[#E4E6EB] font-sans antialiased selection:bg-brand-primary selection:text-white">
         {children}
       </body>
     </html>
