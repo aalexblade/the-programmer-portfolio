@@ -12,8 +12,8 @@ export const Hero = () => {
     <section id="home" className="relative flex min-h-screen items-center py-24 md:py-32">
       {/* Visual background accents */}
       <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
-        <div className="absolute top-[-10%] left-[-10%] h-[40%] w-[40%] rounded-full bg-brand-primary/5 blur-[120px]"></div>
-        <div className="absolute top-[40%] right-[-10%] h-[30%] w-[30%] rounded-full bg-brand-accent/5 blur-[100px]"></div>
+        <div className="absolute top-[-10%] left-[-10%] h-2/5 w-2/5 rounded-full bg-brand-primary/5 blur-3xl"></div>
+        <div className="absolute top-[40%] right-[-10%] h-3/10 w-3/10 rounded-full bg-brand-accent/5 blur-3xl"></div>
       </div>
 
       <Container>

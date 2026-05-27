@@ -69,7 +69,7 @@ export const About = () => {
       </Container>
       
       {/* Decorative background element */}
-      <div className="absolute top-[20%] right-[-5%] -z-10 h-75 w-75 rounded-full bg-brand-primary/5 blur-3xl" aria-hidden="true"></div>
+      <div className="absolute top-1/5 right-[-5%] -z-10 h-75 w-75 rounded-full bg-brand-primary/5 blur-3xl" aria-hidden="true"></div>
     </section>
   );
 };
