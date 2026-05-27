@@ -72,10 +72,10 @@ export const Projects = () => {
               <ul className="mt-auto flex flex-wrap gap-2 pt-4">
                 {project.tags.map((tag) => (
                   <li 
-                    key={tag}
+                    key={tag.id}
                     className="font-dm text-[10px] font-medium tracking-wider text-brand-accent uppercase"
                   >
-                    {tag}
+                    {tag.name}
                   </li>
                 ))}
               </ul>

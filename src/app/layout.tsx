@@ -1,6 +1,8 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
 import { DM_Mono, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { SITE_CONFIG, ROOT_METADATA } from "@/constants/siteConfig";
+import { ViewportWarning } from "@/components/ui/ViewportWarning";
 import "../styles/globals.css";
 
 const dmMono = DM_Mono({
@@ -22,10 +24,7 @@ const ibmPlexSans = IBM_Plex_Sans({
   variable: "--font-ibm-sans",
 });
 
-export const metadata: Metadata = {
-  title: "TheProgrammer | Developer Portfolio",
-  description: "Professional 1-page portfolio landing page for Software Engineer",
-};
+export const metadata = ROOT_METADATA;
 
 export default function RootLayout({
   children,
@@ -34,7 +33,7 @@ export default function RootLayout({
 }) {
   return (
     <html 
-      lang="uk" 
+      lang={SITE_CONFIG.locale} 
       className={`${dmMono.variable} ${ibmPlexMono.variable} ${ibmPlexSans.variable}`}
       suppressHydrationWarning
     >

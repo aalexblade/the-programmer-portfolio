@@ -28,3 +28,12 @@ src/
 ├── constants/            # Isolated data structures to map lists dynamically
 ├── styles/               # Global CSS configurations (globals.css with Tailwind v4 theme)
 └── types/                # Strict TypeScript global declarations
+
+---
+
+## 📈 Log of Architectural Upgrades (May 2026)
+
+- **RSC Optimizations:** `Button.tsx` refactored to a pure React Server Component. Interactivity is now safely abstracted into client wrappers or delegated to parent client trees, reducing client-side JS bloat.
+- **Data Integrity:** All constants (`skills.ts`, `projects.ts`, `experience.ts`) now use explicit, unique `id` properties for React mapping. This eliminates rendering conflicts and improves reconciliation performance.
+- **Viewport Resilience:** Implemented `useViewport` hook and `ViewportWarning` overlay to handle sub-320px viewports, preventing layout breakages on ultra-small modern devices and foldables.
+- **Metadata Centralization:** SEO tokens and page configuration have been moved to `src/constants/siteConfig.ts`, decoupling business logic from structural layout files.

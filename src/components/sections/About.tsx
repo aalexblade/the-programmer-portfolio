@@ -47,17 +47,17 @@ export const About = () => {
             
             <div className="space-y-8">
               {SKILLS_DATA.map((category) => (
-                <div key={category.title} className="space-y-3">
+                <div key={category.id} className="space-y-3">
                   <h4 className="font-ibm text-xs font-bold uppercase tracking-widest text-brand-primary/80">
                     {category.title}
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {category.skills.map((skill) => (
                       <span 
-                        key={skill}
+                        key={skill.id}
                         className="rounded-md border border-white/10 bg-white/5 px-3 py-1 font-dm text-xs text-gray-300 transition-colors hover:border-brand-primary/40 hover:text-white"
                       >
-                        {skill}
+                        {skill.name}
                       </span>
                     ))}
                   </div>

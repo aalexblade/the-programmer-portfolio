@@ -41,11 +41,11 @@ export const Experience = () => {
               </div>
 
               <ul className="space-y-4">
-                {exp.description.map((item, index) => (
-                  <li key={index} className="flex items-start gap-3">
+                {exp.description.map((item) => (
+                  <li key={item.id} className="flex items-start gap-3">
                     <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-brand-primary/60" aria-hidden="true"></span>
                     <p className="font-sans text-base leading-relaxed text-gray-400">
-                      {item}
+                      {item.text}
                     </p>
                   </li>
                 ))}
