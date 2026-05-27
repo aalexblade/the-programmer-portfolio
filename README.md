@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Based on the existing repository layout and our technical stack (Next.js 15, React 19, Tailwind CSS v4, TypeScript), update the root `README.md` file to make it look highly professional, minimal, and engineering-focused.
 
-## Getting Started
+Follow these layout rules strictly:
+1. Header Section:
+   - Include a clean text-based alignment or a minimal badge setup.
+   - Title: "TheProgrammer Portfolio" — A premium, lightweight Next.js developer portfolio engineered for speed, clean typography, and atomic data separation.
 
-First, run the development server:
+2. Features Overview:
+   - Use a clean bulleted list to highlight core system capabilities:
+     * ⚡ Next.js 15 App Router & Server Components (RSC) for near-instant FCP.
+     * 🎨 Tailwind CSS v4 featuring strict design token enforcement and native fluid layouts.
+     * 📁 Data Isolation Architecture (All static/dynamic layouts driven by isolated config constants).
+     * 📱 Fully Responsive fluid UI with custom performance-optimized drawer workflows.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+3. Tech Stack Section:
+   - Display technology badges elegantly using clean, flat vector shields (from shields.io with the `for-the-badge` or `flat-square` style using desaturated/dark tones like #121214 or #1a1a1e to match the portfolio aesthetic).
+   - Tech tokens to include: Next.js, React, TypeScript, Tailwind CSS, ESLint. Avoid excessive or primary bright badge configurations.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Architecture Map:
+   - Provide a clean text-based file tree structure using a code block showing the separation of layers:
+     src/
+     ├── app/          # Next.js Server Routing & Core App Context
+     ├── components/   # Section-based atomic UI layouts
+     └── constants/    # Isolated single-source-of-truth data models
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+5. Getting Started Guide:
+   - Include clear, minimal markdown shell commands for setting up locally:
+     * `npm install`
+     * `npm run dev`
+     * `npm run build`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+6. License and Meta:
+   - Add a clean footer note indicating it's open-source under the MIT license.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Ensure the entire file uses flawless Markdown formatting without any broken links or hallucinated image paths. All structural annotations and descriptions must be in English.
