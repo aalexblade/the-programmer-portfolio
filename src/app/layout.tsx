@@ -1,4 +1,3 @@
-// src/app/layout.tsx
 import type { Metadata } from "next";
 import { DM_Mono, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { SITE_CONFIG, ROOT_METADATA } from "@/constants/siteConfig";
@@ -17,14 +16,13 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-mono",
 });
 
-// Added for long text readability while keeping the IBM design language consistency
 const ibmPlexSans = IBM_Plex_Sans({
   weight: ["400", "500", "600"],
   subsets: ["latin", "cyrillic"],
   variable: "--font-ibm-sans",
 });
 
-export const metadata = ROOT_METADATA;
+export const metadata: Metadata = ROOT_METADATA;
 
 export default function RootLayout({
   children,
@@ -38,6 +36,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="bg-dark-bg text-[#E4E6EB] font-sans antialiased selection:bg-brand-primary selection:text-white">
+        <ViewportWarning />
         {children}
       </body>
     </html>

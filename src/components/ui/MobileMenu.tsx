@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, type FC, type ReactNode } from "react";
 import Link from "next/link";
 import { NAVIGATION_LINKS } from "@/constants/navigation";
 
 /**
- * Technical Icon Components (Inline SVG to avoid missing dependencies)
+ * Technical Icon Components
+ * Using inline SVGs to ensure zero-dependency portability and high performance.
  */
 const Icons = {
   Home: () => (
@@ -45,7 +46,10 @@ const Icons = {
   ),
 };
 
-const getIconForLabel = (label: string) => {
+/**
+ * Maps labels to their corresponding technical icons.
+ */
+const getIconForLabel = (label: string): ReactNode => {
   switch (label.toLowerCase()) {
     case "home": return <Icons.Home />;
     case "about": return <Icons.User />;
@@ -57,12 +61,14 @@ const getIconForLabel = (label: string) => {
 };
 
 /**
- * MobileMenu Client Component
- * Refactored into a premium cyber-geek engineering layout.
+ * MobileMenu Component
+ * Optimized with a solid, 100% opaque background to act as a visual shield.
+ * Maintains cinematic animations and precise interactive feedback.
  */
-export const MobileMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
+export const MobileMenu: FC = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  // Synchronize body scroll state with menu visibility to ensure focus and prevent background scroll
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -74,105 +80,108 @@ export const MobileMenu = () => {
     };
   }, [isOpen]);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const closeMenu = () => setIsOpen(false);
+  const toggleMenu = (): void => setIsOpen(!isOpen);
+  const closeMenu = (): void => setIsOpen(false);
 
   return (
     <>
-      {/* Toggle Button */}
+      {/* Interactive Toggle Button */}
       <button 
-        className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden" 
+        className="relative z-50 flex h-10 w-10 cursor-pointer flex-col items-center justify-center gap-1.5 md:hidden" 
         onClick={toggleMenu}
         aria-label={isOpen ? "Close menu" : "Open menu"}
         aria-expanded={isOpen}
       >
-        <span className={`h-0.5 w-6 bg-white transition-all duration-300 ${isOpen ? "translate-y-2 rotate-45" : ""}`}></span>
-        <span className={`h-0.5 w-6 bg-white transition-all duration-300 ${isOpen ? "opacity-0" : ""}`}></span>
-        <span className={`h-0.5 w-6 bg-white transition-all duration-300 ${isOpen ? "-translate-y-2 -rotate-45" : ""}`}></span>
+        <span className={`h-0.5 w-6 bg-white transition-all duration-500 ${isOpen ? "translate-y-2 rotate-45" : ""}`}></span>
+        <span className={`h-0.5 w-6 bg-white transition-all duration-500 ${isOpen ? "opacity-0" : ""}`}></span>
+        <span className={`h-0.5 w-6 bg-white transition-all duration-500 ${isOpen ? "-translate-y-2 -rotate-45" : ""}`}></span>
       </button>
 
-      {/* Premium Cyber-Geek Menu Overlay */}
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex flex-col justify-between bg-[#0D0E11]/95 p-8 backdrop-blur-xl md:hidden">
-          {/* Subtle Technical Grid Background Overlay */}
-          <div 
-            className="pointer-events-none absolute inset-0 -z-10 opacity-5" 
-            style={{ 
-              backgroundImage: "radial-gradient(#ffffff 0.5px, transparent 0.5px), linear-gradient(to right, #ffffff 0.5px, transparent 0.5px), linear-gradient(to bottom, #ffffff 0.5px, transparent 0.5px)",
-              backgroundSize: "24px 24px"
-            }}
-          ></div>
+      {/* 
+        Immersive Modal Overlay 
+        - Fully opaque bg-[#0d0e11] background (visual shield) to prevent underlying text bleed.
+        - Cinematic 500ms ease-out transition for premium fluidity.
+      */}
+      <div 
+        className={`
+          fixed inset-0 z-50 flex flex-col justify-between bg-dark-bg p-8 md:hidden
+          transition-all duration-500 ease-out
+          ${isOpen ? "translate-x-0 opacity-100 visible" : "translate-x-full opacity-0 invisible pointer-events-none"}
+        `}
+      >
+        {/* Subtle Technical Grid Background Overlay */}
+        <div 
+          className="pointer-events-none absolute inset-0 -z-10 opacity-5" 
+          style={{ 
+            backgroundImage: "radial-gradient(circle, #ffffff 1px, transparent 1px), linear-gradient(to right, #ffffff 0.5px, transparent 0.5px), linear-gradient(to bottom, #ffffff 0.5px, transparent 0.5px)",
+            backgroundSize: "32px 32px"
+          }}
+        ></div>
 
-          {/* Top Section: Branding & Close Button */}
-          <div className="flex items-start justify-between">
-            <div className="flex-1"></div>
-            <h2 className="flex-1 text-center font-ibm text-2xl font-bold tracking-tight text-white whitespace-nowrap">
-              Oleksandr Vasylenko
-            </h2>
-            <div className="flex flex-1 justify-end">
-              <button 
-                onClick={closeMenu}
-                className="flex h-10 w-10 items-center justify-center border border-white/10 bg-white/5 text-white transition-colors hover:border-brand-primary/50 hover:bg-brand-primary/10"
-              >
-                <Icons.X />
-              </button>
-            </div>
-          </div>
+        {/* Top Control Bar with cursor-pointer */}
+        <div className="flex items-center justify-end">
+          <button 
+            onClick={closeMenu}
+            className="flex h-12 w-12 cursor-pointer items-center justify-center border border-white/10 bg-white/5 text-white transition-colors hover:border-brand-primary/50 hover:bg-brand-primary/10"
+            aria-label="Close navigation"
+          >
+            <Icons.X />
+          </button>
+        </div>
 
-          {/* Middle Section: Technical Navigation Links */}
-          <nav className="flex flex-col items-center justify-center gap-2">
-            <div className="flex w-full max-w-xs flex-col gap-1">
-              {NAVIGATION_LINKS.map((link) => (
-                <Link 
-                  key={link.href}
-                  href={link.href}
-                  onClick={closeMenu}
-                  className="group relative flex items-center gap-4 py-4 px-6 transition-all"
-                >
-                  <div className="flex h-10 w-10 items-center justify-center text-brand-primary transition-transform group-hover:scale-110">
-                    {getIconForLabel(link.label)}
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="font-dm text-xl font-bold tracking-widest text-white uppercase transition-all group-hover:text-brand-primary group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]">
-                      {link.label}
-                    </span>
-                    <div className="h-px w-0 bg-brand-primary/50 transition-all duration-300 group-hover:w-full"></div>
-                  </div>
-                </Link>
-              ))}
-
-              {/* Resume CTA inside Menu */}
+        {/* Navigation Link Matrix */}
+        <nav className="flex flex-col items-center justify-center gap-2">
+          <div className="flex w-full max-w-xs flex-col gap-2">
+            {NAVIGATION_LINKS.map((link) => (
               <Link 
-                href="/resume.pdf"
+                key={link.href}
+                href={link.href}
                 onClick={closeMenu}
-                className="group relative flex items-center gap-4 py-4 px-6 transition-all"
+                className="group relative flex items-center gap-6 py-5 px-6 border border-white/5 bg-white/5 transition-all cursor-pointer hover:bg-white/10 hover:border-brand-primary/20"
               >
-                <div className="flex h-10 w-10 items-center justify-center text-brand-accent transition-transform group-hover:scale-110">
-                  <Icons.FileText />
+                <div className="flex h-10 w-10 items-center justify-center text-brand-primary transition-transform group-hover:scale-110">
+                  {getIconForLabel(link.label)}
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-dm text-xl font-bold tracking-widest text-white uppercase transition-all group-hover:text-brand-accent group-hover:drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]">
-                    Resume
+                  <span className="font-dm text-xl font-bold tracking-widest text-white uppercase transition-colors group-hover:text-brand-primary">
+                    {link.label}
                   </span>
-                  <div className="h-px w-0 bg-brand-accent/50 transition-all duration-300 group-hover:w-full"></div>
+                  <div className="h-px w-0 bg-brand-primary/50 transition-all duration-300 group-hover:w-full"></div>
                 </div>
               </Link>
-            </div>
-          </nav>
+            ))}
 
-          {/* Bottom Section: Technical Layout Badges */}
-          <div className="flex flex-col items-center gap-4">
-            <div className="h-px w-20 bg-white/10"></div>
-            <div className="flex flex-wrap justify-center gap-4 opacity-40">
-              {["Next.js 15", "React 19", "Tailwind CSS v4", "TypeScript"].map((badge) => (
-                <span key={badge} className="font-dm text-[10px] font-medium tracking-tighter uppercase">
-                  {badge}
+            {/* Resume Access CTA */}
+            <Link 
+              href="/resume.pdf"
+              onClick={closeMenu}
+              className="group relative flex items-center gap-6 py-5 px-6 border border-white/5 bg-white/5 transition-all cursor-pointer hover:bg-white/10 hover:border-brand-accent/20"
+            >
+              <div className="flex h-10 w-10 items-center justify-center text-brand-accent transition-transform group-hover:scale-110">
+                <Icons.FileText />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-dm text-xl font-bold tracking-widest text-white uppercase transition-colors group-hover:text-brand-accent">
+                  Resume
                 </span>
-              ))}
-            </div>
+                <div className="h-px w-0 bg-brand-accent/50 transition-all duration-300 group-hover:w-full"></div>
+              </div>
+            </Link>
+          </div>
+        </nav>
+
+        {/* Technical Metadata Footer */}
+        <div className="flex flex-col items-center gap-4">
+          <div className="h-px w-16 bg-white/10"></div>
+          <div className="flex flex-wrap justify-center gap-6 opacity-30">
+            {["Next.js 15", "React 19", "Tailwind 4", "TypeScript"].map((tech) => (
+              <span key={tech} className="font-dm text-xs font-medium tracking-tighter uppercase">
+                {tech}
+              </span>
+            ))}
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 };
