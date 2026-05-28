@@ -62,8 +62,8 @@ const getIconForLabel = (label: string): ReactNode => {
 
 /**
  * MobileMenu Component
- * Refactored to guarantee full-screen coverage and complete visual isolation.
- * Uses solid bg-dark-bg design tokens with cinematic easing transitions.
+ * Updated to fix horizontal overflow bugs by using w-full instead of w-screen.
+ * Guarantees full-screen coverage with inset-0 and h-screen.
  */
 export const MobileMenu: FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -99,13 +99,12 @@ export const MobileMenu: FC = () => {
 
       {/* 
         Full Screen Immersive Modal Overlay 
-        - Guaranteed w-screen h-screen coverage.
+        - Uses w-full to prevent horizontal overflow bugs caused by scrollbar widths.
         - Solid bg-dark-bg token with 100% opacity for complete visual shielding.
-        - Cinematic 500ms ease-out transitions.
       */}
       <div 
         className={`
-          fixed inset-0 w-screen h-screen z-50 flex flex-col justify-between bg-dark-bg md:hidden
+          fixed inset-0 w-full h-screen z-50 flex flex-col justify-between bg-dark-bg md:hidden
           transition-all duration-500 ease-out
           ${isOpen ? "translate-x-0 opacity-100 visible" : "translate-x-full opacity-0 invisible pointer-events-none"}
         `}
@@ -130,7 +129,7 @@ export const MobileMenu: FC = () => {
           </button>
         </div>
 
-        {/* Navigation Link Matrix - Spans full width for premium feel */}
+        {/* Navigation Link Matrix */}
         <nav className="flex flex-col items-center justify-center px-8">
           <div className="flex w-full flex-col gap-2">
             {NAVIGATION_LINKS.map((link) => (
