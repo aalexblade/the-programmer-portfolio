@@ -62,8 +62,8 @@ const getIconForLabel = (label: string): ReactNode => {
 
 /**
  * MobileMenu Component
- * Optimized with a solid, 100% opaque background to act as a visual shield.
- * Maintains cinematic animations and precise interactive feedback.
+ * Refactored to guarantee full-screen coverage and complete visual isolation.
+ * Uses solid bg-dark-bg design tokens with cinematic easing transitions.
  */
 export const MobileMenu: FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -98,13 +98,14 @@ export const MobileMenu: FC = () => {
       </button>
 
       {/* 
-        Immersive Modal Overlay 
-        - Fully opaque bg-[#0d0e11] background (visual shield) to prevent underlying text bleed.
-        - Cinematic 500ms ease-out transition for premium fluidity.
+        Full Screen Immersive Modal Overlay 
+        - Guaranteed w-screen h-screen coverage.
+        - Solid bg-dark-bg token with 100% opacity for complete visual shielding.
+        - Cinematic 500ms ease-out transitions.
       */}
       <div 
         className={`
-          fixed inset-0 z-50 flex flex-col justify-between bg-dark-bg p-8 md:hidden
+          fixed inset-0 w-screen h-screen z-50 flex flex-col justify-between bg-dark-bg md:hidden
           transition-all duration-500 ease-out
           ${isOpen ? "translate-x-0 opacity-100 visible" : "translate-x-full opacity-0 invisible pointer-events-none"}
         `}
@@ -119,7 +120,7 @@ export const MobileMenu: FC = () => {
         ></div>
 
         {/* Top Control Bar with cursor-pointer */}
-        <div className="flex items-center justify-end">
+        <div className="flex items-center justify-end p-8">
           <button 
             onClick={closeMenu}
             className="flex h-12 w-12 cursor-pointer items-center justify-center border border-white/10 bg-white/5 text-white transition-colors hover:border-brand-primary/50 hover:bg-brand-primary/10"
@@ -129,9 +130,9 @@ export const MobileMenu: FC = () => {
           </button>
         </div>
 
-        {/* Navigation Link Matrix */}
-        <nav className="flex flex-col items-center justify-center gap-2">
-          <div className="flex w-full max-w-xs flex-col gap-2">
+        {/* Navigation Link Matrix - Spans full width for premium feel */}
+        <nav className="flex flex-col items-center justify-center px-8">
+          <div className="flex w-full flex-col gap-2">
             {NAVIGATION_LINKS.map((link) => (
               <Link 
                 key={link.href}
@@ -171,7 +172,7 @@ export const MobileMenu: FC = () => {
         </nav>
 
         {/* Technical Metadata Footer */}
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-4 p-8">
           <div className="h-px w-16 bg-white/10"></div>
           <div className="flex flex-wrap justify-center gap-6 opacity-30">
             {["Next.js 15", "React 19", "Tailwind 4", "TypeScript"].map((tech) => (
